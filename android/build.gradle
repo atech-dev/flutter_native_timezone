@@ -24,6 +24,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'com.whelksoft.flutter_native_timezone'
     compileSdkVersion 30
 
     sourceSets {
@@ -33,14 +34,27 @@ android {
         targetSdkVersion 30
         minSdkVersion 16
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //multiDexEnabled true
     }
     lintOptions {
         disable 'InvalidPackage'
+    }
+    compileOptions {
+        // flutter_local_notifications requires
+        // coreLibraryDesugaringEnabled true
+
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //implementation "androidx.multidex:multidex:2.0.1"
 }
 
 java {
